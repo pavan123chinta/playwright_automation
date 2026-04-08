@@ -6,8 +6,14 @@ from playwright.sync_api import sync_playwright
 @pytest.fixture(scope="session")
 def browser():
     with sync_playwright() as p:
-        # ✅ FIX: Headless for CI/CD (GitHub Actions)
-        browser = p.chromium.launch(headless=True)
+        # 🔥 AUTO FIX (local = UI, CI = headless)
+        headless = os.getenv("CI") == "true"
+
+        browser = p.chromium.launch(
+            headless=headless,
+            args=["--no-sandbox", "--disable-dev-shm-usage"]  # ✅ CI stability
+        )
+
         yield browser
         browser.close()
 
@@ -25,7 +31,7 @@ def base_url():
     return "https://opensource-demo.orangehrmlive.com"
 
 
-# 🔥 Screenshot on failure (FIXED + SAFE)
+# 🔥 Screenshot on failure
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item):
     outcome = yield
@@ -34,5 +40,5 @@ def pytest_runtest_makereport(item):
     if report.when == "call" and report.failed:
         page = item.funcargs.get("page")
         if page:
-            os.makedirs("screenshots", exist_ok=True)  # ✅ ensure folder exists
+            os.makedirs("screenshots", exist_ok=True)
             page.screenshot(path=f"screenshots/{item.name}.png")
