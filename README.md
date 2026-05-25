@@ -1,112 +1,91 @@
-Playwright Automation Framework (Python)
+# Playwright Automation Framework (Python)
 
-A robust end-to-end UI automation framework built using Playwright, Pytest, and Page Object Model (POM) with CI/CD integration using GitHub Actions.
+End-to-end UI automation framework built using Playwright, Pytest, and Page Object Model (POM) with CI/CD integration through GitHub Actions.
 
-Features
+## Features
 
-Playwright with Python
-Pytest framework
-Page Object Model (POM)
-Cross-browser support (Chromium, Firefox, WebKit)
-Headless execution (CI compatible)
-Screenshot capture on failure
-HTML reports
-Parallel execution
-GitHub Actions CI/CD
+- Playwright with Python
+- Pytest framework
+- Page Object Model (POM)
+- Cross-browser support
+- Headless execution
+- Screenshot capture on failure
+- HTML reporting
+- Parallel execution
+- GitHub Actions CI/CD
 
-Project Structure
+## Project Structure
 
+```bash
 playwright_project/
+│
+├── pages/
+├── tests/
+├── screenshots/
+├── conftest.py
+├── pytest.ini
+├── requirements.txt
+└── .github/workflows/playwright.yml
+```
 
-pages/
-init.py
-login_page.py
-google_page.py
+## Setup
 
-tests/
-init.py
-test_login.py
-test_google_test.py
+### Clone Repository
 
-screenshots/
-conftest.py
-requirements.txt
-pytest.ini
-
-.github/workflows/playwright.yml
-
-Setup
-
-Clone repository
-
+```bash
 git clone https://github.com/pavan123chinta/playwright_automation.git
-
 cd playwright_automation
+```
 
-Create virtual environment
+### Create Virtual Environment
 
+```bash
 python -m venv venv
 source venv/Scripts/activate
+```
 
-Install dependencies
+### Install Dependencies
 
+```bash
 pip install -r requirements.txt
-
-Install Playwright browsers
-
 playwright install
+```
 
-Run Tests
+## Run Tests
 
+```bash
 pytest
+```
 
-Run Parallel
+## Run Tests in Parallel
 
+```bash
 pytest -n 2
+```
 
-Generate Report
+## Generate HTML Report
 
+```bash
 pytest --html=report.html
+```
 
-Screenshots
+## CI/CD
 
-Screenshots are automatically captured on failure and stored in the screenshots folder.
+GitHub Actions workflow runs automatically on push to the main branch.
 
-CI/CD (GitHub Actions)
-
-Runs on every push to main branch
-Installs dependencies
-Runs tests in headless mode
-Uploads report
-
-Workflow file location:
-.github/workflows/playwright.yml
-
-Concepts Used
-
-Page Object Model
-Separates locators and actions from test logic
-
-Pytest Fixtures
-Reusable setup for browser, page, and base_url
-
-Headless Execution
-Required for CI/CD since no UI is available
-
-Test Application
+## Test Application
 
 https://opensource-demo.orangehrmlive.com
 
-Future Enhancements
+## Future Enhancements
 
-Allure Reports
-Retry failed tests
-Docker setup
-Environment-based configs
-API + UI automation
+- Allure Reports
+- Retry failed tests
+- Docker setup
+- Environment-based configurations
+- API + UI automation integration
 
-Author
+## Author
 
-Pavan Chinta
-QA Engineer
-Skills: Playwright, Selenium, Python, UiPath
+Pavan Chinta  
+QA Automation Engineer
